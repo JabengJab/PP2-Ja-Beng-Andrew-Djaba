@@ -86,3 +86,108 @@ p {
     font-size: 1.5rem;
     color: #1f0202;
 }
+
+/* Media Query for Smartphones */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .choices button {
+        font-size: 3.5rem;
+        min-width: 80px;
+        margin: 0 5px;
+    }
+
+    #playerDisplay, #computerDisplay {
+        font-size: 1.5rem;
+    }
+
+    #resultDisplay {
+        font-size: 2.5rem;
+        margin: 15px 0;
+    }
+
+    .scoreDisplay {
+        font-size: 1.5rem;
+    }
+
+    .scoreboard p {
+        font-size: 20px;
+    }
+
+    .reset {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Media Query for Tablets */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    .choices button {
+        font-size: 5.5rem;
+        min-width: 120px;
+        margin: 0 8px;
+    }
+
+    #playerDisplay, #computerDisplay {
+        font-size: 2rem;
+    }
+
+    #resultDisplay {
+        font-size: 3.5rem;
+        margin: 20px 0;
+    }
+
+    .scoreDisplay {
+        font-size: 1.8rem;
+    }
+
+    .scoreboard p {
+        font-size: 25px;
+    }
+
+    .reset {
+        font-size: 1.2rem;
+        padding: 0.7rem 1.2rem;
+    }
+}
+
+/* Media Query for Larger Screens */
+@media (min-width: 1024px) {
+    h1 {
+        font-size: 5.5rem;
+    }
+
+    .choices button {
+        font-size: 8.5rem;
+        min-width: 180px;
+        margin: 0 12px;
+    }
+
+    #playerDisplay, #computerDisplay {
+        font-size: 3rem;
+    }
+
+    #resultDisplay {
+        font-size: 6rem;
+        margin: 40px 0;
+    }
+
+    .scoreDisplay {
+        font-size: 2.5rem;
+    }
+
+    .scoreboard p {
+        font-size: 35px;
+    }
+
+    .reset {
+        font-size: 1.5rem;
+        padding: 0.8rem 1.5rem;
+    }
+}

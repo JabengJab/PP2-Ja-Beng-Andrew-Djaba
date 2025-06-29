@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US"">
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,25 +14,51 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <h1>Ja Beng</h1>
-    <p>Your rock, paper, scissors, lizard and spock game.</p>
+    <header>
+        <h1>Ja Beng</h1>
+        <p>Your rock, paper, scissors, lizard and spock game.</p>
+        <button id="rulesBtn" class="rules-btn">Show Rules</button>
+    </header>
 
-    <div class="choices">
-        <button onclick="playGame('rock')">👊</button>
-        <button onclick="playGame('paper')">✋</button>
-        <button onclick="playGame('scissors')">✂️</button>
-        <button onclick="playGame('lizard')">🦎</button>
-        <button onclick="playGame('spock')">🖖</button>
-    </div>
+    <main>
+        <div class="game-container">
+            <div class="choices">
+                <button onclick="playGame('rock')" aria-label="Rock">👊</button>
+                <button onclick="playGame('paper')" aria-label="Paper">✋</button>
+                <button onclick="playGame('scissors')" aria-label="Scissors">✂️</button>
+                <button onclick="playGame('lizard')" aria-label="Lizard">🦎</button>
+                <button onclick="playGame('spock')" aria-label="Spock">🖖</button>
+            </div>
 
-    <div id="playerDisplay">PLAYER: </div>
-    <div id="computerDisplay">COMPUTER: </div>
-    <div id="resultDisplay"></div>
-    <div class="scoreDisplay">Player Score: <span id="playerScoreDisplay">0</span></div>
-    <div class="scoreDisplay">Computer Score: <span id="computerScoreDisplay">0</span></div>
-    <div id="duelRounds">Rounds left: 5</div>
-    
-    <button onclick="resetGame()" class="reset">Reset Game</button>
+            <div class="game-info">
+                <div id="playerDisplay">PLAYER: </div>
+                <div id="computerDisplay">COMPUTER: </div>
+                <div id="resultDisplay"></div>
+                <div class="scores-container">
+                    <div class="scoreDisplay">Player Score: <span id="playerScoreDisplay">0</span></div>
+                    <div class="scoreDisplay">Computer Score: <span id="computerScoreDisplay">0</span></div>
+                </div>
+                <div id="duelRounds">Rounds left: 5</div>
+                <div id="gameHistory" class="history"></div>
+            </div>
+            
+            <button onclick="resetGame()" class="reset">Reset Game</button>
+        </div>
+
+        <div id="rulesModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Game Rules</h2>
+                <ul>
+                    <li>✊ Rock crushes ✂️ Scissors and 🦎 Lizard</li>
+                    <li>✋ Paper covers ✊ Rock and disproves 🖖 Spock</li>
+                    <li>✂️ Scissors cuts ✋ Paper and decapitates 🦎 Lizard</li>
+                    <li>🦎 Lizard poisons 🖖 Spock and eats ✋ Paper</li>
+                    <li>🖖 Spock smashes ✂️ Scissors and vaporizes ✊ Rock</li>
+                </ul>
+            </div>
+        </div>
+    </main>
 
     <script src="assets/js/scripts.js"></script>
 </body>
