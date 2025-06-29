@@ -1,0 +1,9 @@
+const choices = ["rock", "paper", "scissors", "lizard", "spock"];
+const playerDisplay = document.getElementById("playerDisplay");
+const computerDisplay = document.getElementById("computerDisplay");
+const resultDisplay = document.getElementById("resultDisplay");
+const playerScoreDisplay = document.getElementById("playerScoreDisplay");
+const computerScoreDisplay = document.getElementById("computerScoreDisplay");
+let playerScore = 0;
+let computerScore = 0;
+let rounds = 5; // Number of rounds in a game
