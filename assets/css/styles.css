@@ -1,0 +1,14 @@
+body {
+    background: #6797b8;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 4.5rem;
+    color: hsl(287, 100%, 3%);
+}
