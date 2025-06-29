@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US"">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ja Beng</title>
+
+    <!-- Font Awesome and Google Fonts -->
+    <script src="https://kit.fontawesome.com/95a43c4ec4.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Roboto+Condensed&display=swap" rel="stylesheet">
 </head>
 <body>
+    <h1>Ja Beng</h1>
+    <p>Your rock, paper, scissors, lizard and spock game.</p>
+
+    <div class="choices">
+        <button onclick="playGame('rock')">👊</button>
+        <button onclick="playGame('paper')">✋</button>
+        <button onclick="playGame('scissors')">✂️</button>
+        <button onclick="playGame('lizard')">🦎</button>
+        <button onclick="playGame('spock')">🖖</button>
+    </div>
+
+    <div id="playerDisplay">PLAYER: </div>
+    <div id="computerDisplay">COMPUTER: </div>
+    <div id="resultDisplay"></div>
+    <div class="scoreDisplay">Player Score: <span id="playerScoreDisplay">0</span></div>
+    <div class="scoreDisplay">Computer Score: <span id="computerScoreDisplay">0</span></div>
+    <div id="duelRounds">Rounds left: 5</div>
     
+    <button onclick="resetGame()" class="reset">Reset Game</button>
 </body>
 </html>
