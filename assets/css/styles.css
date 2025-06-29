@@ -1,193 +1,253 @@
+:root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --accent: #e74c3c;
+    --light: #c1dce2;
+    --dark: #2c3e50;
+    --win: #2ecc71;
+    --lose: #e74c3c;
+    --tie: #f39c12;
+}
+
 body {
-    background: #6797b8;
+    background: var(--light);
     font-family: 'Lato', sans-serif;
-    font-weight: bold;
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+    color: var(--dark);
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
 }
 
 h1 {
     font-size: 4.5rem;
-    color: hsl(287, 100%, 3%);
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: var(--dark);
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
 }
 
 .choices {
     margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
 }
 
 .choices button {
     font-size: 7.5rem;
     min-width: 160px;
-    margin: 0 10px;
-    border-radius: 250px;
-    background-color: #c69ad4;
+    border-radius: 50%;
+    background-color: var(--secondary);
+    color: white;
     cursor: pointer;
-    transition: background-color 0.5s ease;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 20px;
+    aspect-ratio: 1/1;
 }
 
 .choices button:hover {
-    background-color: #491549;
+    background-color: var(--primary);
+    transform: scale(1.05);
 }
 
-#playerDisplay {
-    font-size: 2.5rem;
-    color: #FFD700;
+.game-info {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
-#computerDisplay {
+#playerDisplay, #computerDisplay {
     font-size: 2.5rem;
-    color: hsl(288, 63%, 21%);
+    margin: 10px 0;
 }
 
 #resultDisplay {
     font-size: 5rem;
     margin: 30px 0;
+    min-height: 80px;
+}
+
+.scores-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
 }
 
 .scoreDisplay {
     font-size: 2rem;
-    color: #ffffff;
+    font-weight: bold;
 }
 
-.whiteText, #playerScoreDisplay {
-    color: #FFD700;
+#playerScoreDisplay {
+    color: var(--win);
 }
 
-.redText, #computerScoreDisplay {
-    color: red;
-}
-
-.scoreboard {
-    text-align: center;
-    color: #ad8c45;
-}
-
-.scoreboard p {
-    font-size: 30px;
-    padding-bottom: 0;
+#computerScoreDisplay {
+    color: var(--lose);
 }
 
 #duelRounds {
-    font-size: 1rem;
-    color: #491549;
-    margin-top: 20px;
+    font-size: 1.5rem;
+    margin: 20px 0;
+    font-weight: bold;
 }
 
 .reset {
-    background-color: hsl(288, 63%, 21%);
-    color: #fafafa;
-    margin-top: 1rem;
-}
-
-p {
-    margin-top: 1rem;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 15px 30px;
     font-size: 1.5rem;
-    color: #1f0202;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
 }
 
-/* Media Query for Smartphones */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    .choices button {
-        font-size: 3.5rem;
-        min-width: 80px;
-        margin: 0 5px;
-    }
-
-    #playerDisplay, #computerDisplay {
-        font-size: 1.5rem;
-    }
-
-    #resultDisplay {
-        font-size: 2.5rem;
-        margin: 15px 0;
-    }
-
-    .scoreDisplay {
-        font-size: 1.5rem;
-    }
-
-    .scoreboard p {
-        font-size: 20px;
-    }
-
-    .reset {
-        font-size: 1rem;
-        padding: 0.5rem 1rem;
-    }
+.reset:hover {
+    background-color: #c0392b;
 }
 
-/* Media Query for Tablets */
+.history {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(156, 188, 201, 0.8);
+    border-radius: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.history p {
+    margin: 5px 0;
+    font-size: 1.5rem;
+}
+
+/* Rules Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: var(--light);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+}
+
+.close {
+    color: var(--dark);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: var(--accent);
+}
+
+.rules-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.rules-btn:hover {
+    background-color: #1a252f;
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.winner {
+    animation: bounce 0.5s ease;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     h1 {
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
-
+    
     .choices button {
-        font-size: 5.5rem;
-        min-width: 120px;
-        margin: 0 8px;
+        font-size: 4rem;
+        min-width: 100px;
+        padding: 10px;
     }
-
+    
     #playerDisplay, #computerDisplay {
-        font-size: 2rem;
-    }
-
-    #resultDisplay {
-        font-size: 3.5rem;
-        margin: 20px 0;
-    }
-
-    .scoreDisplay {
         font-size: 1.8rem;
     }
-
-    .scoreboard p {
-        font-size: 25px;
+    
+    #resultDisplay {
+        font-size: 3rem;
+        margin: 20px 0;
     }
-
-    .reset {
-        font-size: 1.2rem;
-        padding: 0.7rem 1.2rem;
+    
+    .scores-container {
+        flex-direction: column;
+        gap: 10px;
     }
 }
 
-/* Media Query for Larger Screens */
-@media (min-width: 1024px) {
+@media (max-width: 480px) {
     h1 {
-        font-size: 5.5rem;
+        font-size: 2.2rem;
     }
-
+    
+    .choices {
+        gap: 10px;
+    }
+    
     .choices button {
-        font-size: 8.5rem;
-        min-width: 180px;
-        margin: 0 12px;
-    }
-
-    #playerDisplay, #computerDisplay {
         font-size: 3rem;
+        min-width: 80px;
     }
-
-    #resultDisplay {
-        font-size: 6rem;
-        margin: 40px 0;
-    }
-
-    .scoreDisplay {
-        font-size: 2.5rem;
-    }
-
-    .scoreboard p {
-        font-size: 35px;
-    }
-
-    .reset {
-        font-size: 1.5rem;
-        padding: 0.8rem 1.5rem;
+    
+    .modal-content {
+        margin: 20% auto;
+        width: 90%;
     }
 }
