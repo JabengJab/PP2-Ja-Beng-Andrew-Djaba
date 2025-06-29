@@ -4,80 +4,81 @@ const computerDisplay = document.getElementById("computerDisplay");
 const resultDisplay = document.getElementById("resultDisplay");
 const playerScoreDisplay = document.getElementById("playerScoreDisplay");
 const computerScoreDisplay = document.getElementById("computerScoreDisplay");
-let playerScore = 0;
-let computerScore = 0;
-let rounds = 5; // Number of rounds in a game
+const roundsDisplay = document.getElementById("duelRounds");
+const gameHistory = document.getElementById("gameHistory");
+const rulesBtn = document.getElementById("rulesBtn");
+const modal = document.getElementById("rulesModal");
+const closeBtn = document.querySelector(".close");
+
+// Game State
+let gameState = {
+    playerScore: 0,
+    computerScore: 0,
+    rounds: 5,
+    history: []
+};
+
+// Win Conditions
+const winConditions = {
+    rock: ["scissors", "lizard"],
+    paper: ["rock", "spock"],
+    scissors: ["paper", "lizard"],
+    lizard: ["spock", "paper"],
+    spock: ["rock", "scissors"]
+};
+
+// Emoji mapping
+const emojiMap = {
+    rock: "👊",
+    paper: "✋",
+    scissors: "✂️",
+    lizard: "🦎",
+    spock: "🖖"
+};
+
+// Modal functionality
+rulesBtn.addEventListener("click", () => {
+    modal.style.display = "block";
+});
+
+closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+});
 
 function playGame(playerChoice) {
-    if (rounds <= 0) {
-        alert("Game over! Please reset the game.");
+    if (gameState.rounds <= 0) {
+        showGameOver();
         return;
     }
 
     const computerChoice = choices[Math.floor(Math.random() * 5)];
-    let result = "";
+    const result = determineWinner(playerChoice, computerChoice);
 
+    updateDisplay(playerChoice, computerChoice, result);
+    updateScores(result);
+    updateHistory(playerChoice, computerChoice, result);
+    
+    gameState.rounds--;
+    roundsDisplay.textContent = `Rounds left: ${gameState.rounds}`;
+
+    if (gameState.rounds <= 0) {
+        showGameOver();
+    }
+}
+
+function determineWinner(playerChoice, computerChoice) {
     if (playerChoice === computerChoice) {
-        result = "IT'S A TIE";
-    } else {
-        switch (playerChoice) {
-            case "rock":
-                result = (computerChoice === "scissors" || computerChoice === "lizard") ? "YOU WIN!" : "YOU LOSE!";
-                break;
-            case "paper":
-                result = (computerChoice === "rock" || computerChoice === "spock") ? "YOU WIN!" : "YOU LOSE!";
-                break;
-            case "scissors":
-                result = (computerChoice === "paper" || computerChoice === "lizard") ? "YOU WIN!" : "YOU LOSE!";
-                break;
-            case "lizard":
-                result = (computerChoice === "spock" || computerChoice === "paper") ? "YOU WIN!" : "YOU LOSE!";
-                break;
-            case "spock":
-                result = (computerChoice === "rock" || computerChoice === "scissors") ? "YOU WIN!" : "YOU LOSE!";
-                break;
-        }
+        return "TIE";
     }
-
-    playerDisplay.textContent = `Player: ${playerChoice}`;
-    computerDisplay.textContent = `Computer: ${computerChoice}`;
-    resultDisplay.textContent = result;
-
-    resultDisplay.classList.remove("whiteText", "redText");
-
-    if (result === "YOU WIN!") {
-        resultDisplay.classList.add("whiteText");
-        playerScore++;
-        playerScoreDisplay.textContent = playerScore;
-    } else if (result === "YOU LOSE!") {
-        resultDisplay.classList.add("redText");
-        computerScore++;
-        computerScoreDisplay.textContent = computerScore;
-    }
-
-    rounds--;
-    document.getElementById('duelRounds').textContent = `Rounds left: ${rounds}`;
-
-    if (rounds <= 0) {
-        alert("Game over! Please reset the game.");
-    }
+    return winConditions[playerChoice].includes(computerChoice) ? "WIN" : "LOSE";
 }
 
-function resetGame() {
-    playerScore = 0;
-    computerScore = 0;
-    rounds = 5;
-
-    playerScoreDisplay.textContent = playerScore;
-    computerScoreDisplay.textContent = computerScore;
-    document.getElementById('duelRounds').textContent = `Rounds left: ${rounds}`;
-    playerDisplay.textContent = 'PLAYER:';
-    computerDisplay.textContent = 'COMPUTER:';
-    resultDisplay.textContent = '';
-    resultDisplay.classList.remove("whiteText", "redText");
-}
-document.querySelectorAll(".choice").forEach(button => {
-    button.addEventListener("click", () => {
-        playGame(button.id);
-    });
-});
+function updateDisplay(playerChoice, computerChoice, result) {
+    playerDisplay.textContent = `PLAYER: ${emojiMap[playerChoice]}`;
+    computerDisplay.textContent = `COMPUTER: ${emojiMap[computerChoice]}`;
